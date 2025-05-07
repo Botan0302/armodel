@@ -11,8 +11,9 @@
     }
 
     model-viewer {
-      width: 100vw;
-      height: 100vh;
+      width: 90vw; /* Modell wird auf 90% der Bildschirmbreite verkleinert */
+      height: 80vh; /* Modell wird auf 80% der Bildschirmhöhe verkleinert */
+      margin: auto;
       background-color: #e0e0e0;
     }
 
@@ -20,7 +21,7 @@
     #ar-button {
       position: absolute;
       left: 50%;
-      bottom: 40px;
+      bottom: 40px; /* Position etwas nach oben verschoben, damit der Button sichtbar ist */
       transform: translateX(-50%);
       background-color: white;
       border: 2px solid #4285f4;
@@ -59,8 +60,7 @@
   auto-rotate
   camera-controls
   ar
-  ar-modes="scene-viewer webxr quick-look"
-  style="width: 100vw; height: 100vh;">
+  ar-modes="scene-viewer webxr quick-look">
   
   <!-- AR Button, der in der Mitte erscheint -->
   <button slot="ar-button" id="ar-button">
