@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>Testmodell mit AR und HDR-Hintergrund</title>
+  <meta charset="UTF-8">
+  <title>Testmodell mit AR</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
       margin: 0;
-      overflow: hidden;
-      background-color: black;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      overflow: hidden; /* Verhindert das Scrollen der Seite */
     }
+
     model-viewer {
-      width: 90vw;
-      height: 80vh;
-      background-color: black;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.7);
-      display: block;
+      width: 90vw; /* Modell wird auf 90% der Bildschirmbreite verkleinert */
+      height: 80vh; /* Modell wird auf 80% der Bildschirmhöhe verkleinert */
+      margin: auto;
+      background-color: #e0e0e0;
     }
+
+    /* Stil für den AR-Button */
     #ar-button {
       position: absolute;
       left: 50%;
-      bottom: 40px;
+      bottom: 40px; /* Position etwas nach oben verschoben, damit der Button sichtbar ist */
       transform: translateX(-50%);
       background-color: white;
       border: 2px solid #4285f4;
@@ -45,38 +41,43 @@
       justify-content: center;
       gap: 10px;
     }
+
     #ar-button:active {
       background-color: #e0e0e0;
     }
+
     #ar-button:focus {
       outline: none;
     }
+
   </style>
 </head>
 <body>
 
-  <model-viewer
-    src="manhaus.glb"
-    alt="3D-Modell von manhaus"
-    auto-rotate
-    camera-controls
-    ar
-    ar-modes="scene-viewer webxr quick-look"
-    environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k.env"
-    skybox-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k.jpg"
-    exposure="1"
-    shadow-intensity="1"
-    shadow-softness="0.8"
-    background-color="black"
-  >
-    <button slot="ar-button" id="ar-button">In deinem Raum ansehen</button>
-  </model-viewer>
+<model-viewer
+  src="manhaus.glb"
+  alt="3D-Modell von manhaus"
+  auto-rotate
+  camera-controls
+  ar
+  ar-modes="scene-viewer webxr quick-look">
+  
+  <!-- AR Button, der in der Mitte erscheint -->
+  <button slot="ar-button" id="ar-button">
+    In deinem Raum ansehen
+  </button>
 
-  <script>
-    const modelViewer = document.querySelector('model-viewer');
-    const arButton = document.getElementById('ar-button');
-    arButton.addEventListener('click', () => modelViewer.enterAR());
-  </script>
+</model-viewer>
+
+<script>
+  // Funktionalität des AR-Buttons sicherstellen
+  const modelViewer = document.querySelector('model-viewer');
+  const arButton = document.getElementById('ar-button');
+  
+  arButton.addEventListener('click', () => {
+    modelViewer.enterAR();
+  });
+</script>
 
 </body>
 </html>
