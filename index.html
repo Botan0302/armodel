@@ -2,99 +2,36 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Testmodell mit AR</title>
+  <title>Test Hintergrund</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body, html {
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
+      margin: 0; padding: 0; height: 100%;
     }
-
-    /* Container für Hintergrund und model-viewer */
-    #viewer-container {
-      position: relative;
-      width: 90vw;
-      height: 80vh;
-      margin: auto;
-      background-image: url('https://modelviewer.dev/shared-assets/models/spruit-sunrise/spruit-sunrise-ambient.jpg');
+    body {
+      background: url('https://modelviewer.dev/shared-assets/models/spruit-sunrise/spruit-sunrise-ambient.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
     }
-
     model-viewer {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      width: 100%;
-      height: 100%;
-      background-color: transparent; /* transparent setzen */
-      z-index: 1;
-    }
-
-    #ar-button {
-      position: absolute;
-      left: 50%;
-      bottom: 40px;
-      transform: translateX(-50%);
-      background-color: white;
-      border: 2px solid #4285f4;
-      border-radius: 50px;
-      padding: 15px 30px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #4285f4;
-      background-image: url('https://modelviewer.dev/shared-assets/icons/ic_view_in_ar_new_googblue_48dp.png');
-      background-repeat: no-repeat;
-      background-position: 12px center;
-      background-size: 28px 28px;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    #ar-button:active {
-      background-color: #e0e0e0;
-    }
-
-    #ar-button:focus {
-      outline: none;
+      width: 100vw;
+      height: 100vh;
+      background-color: transparent;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-<div id="viewer-container">
-  <model-viewer
-    src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-    alt="3D-Modell Astronaut"
-    auto-rotate
-    camera-controls
-    ar
-    ar-modes="scene-viewer webxr quick-look"
-    ar-placement="floor"
-  >
-    <button slot="ar-button" id="ar-button">
-      In deinem Raum ansehen
-    </button>
-  </model-viewer>
-</div>
-
-<script>
-  const modelViewer = document.querySelector('model-viewer');
-  const arButton = document.getElementById('ar-button');
-
-  if (!modelViewer.canActivateAR) {
-    arButton.style.display = 'none';
-  }
-
-  arButton.addEventListener('click', () => {
-    modelViewer.enterAR();
-  });
-</script>
+<model-viewer
+  src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+  alt="3D-Modell Astronaut"
+  auto-rotate
+  camera-controls
+  ar
+  ar-modes="scene-viewer webxr quick-look"
+  ar-placement="floor"
+>
+</model-viewer>
 
 </body>
 </html>
