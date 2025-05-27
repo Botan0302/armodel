@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Testmodell mit AR</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
       margin: 0;
-      overflow: hidden; /* Verhindert das Scrollen der Seite */
+      overflow: hidden;
     }
 
     model-viewer {
-      width: 90vw; /* Modell wird auf 90% der Bildschirmbreite verkleinert */
-      height: 80vh; /* Modell wird auf 80% der Bildschirmhöhe verkleinert */
+      position: relative;
+      width: 90vw;
+      height: 80vh;
       margin: auto;
-      background-color: #e0e0e0;
+      background-image: url('https://modelviewer.dev/shared-assets/models/spruit-sunrise/spruit-sunrise-ambient.jpg');
+      background-size: cover;
+      background-position: center;
     }
 
-    /* Stil für den AR-Button */
     #ar-button {
       position: absolute;
       left: 50%;
-      bottom: 40px; /* Position etwas nach oben verschoben, damit der Button sichtbar ist */
+      bottom: 40px;
       transform: translateX(-50%);
       background-color: white;
       border: 2px solid #4285f4;
@@ -49,7 +51,6 @@
     #ar-button:focus {
       outline: none;
     }
-
   </style>
 </head>
 <body>
@@ -60,20 +61,22 @@
   auto-rotate
   camera-controls
   ar
-  ar-modes="scene-viewer webxr quick-look">
-  
-  <!-- AR Button, der in der Mitte erscheint -->
+  ar-modes="scene-viewer webxr quick-look"
+  ar-placement="floor"
+>
   <button slot="ar-button" id="ar-button">
     In deinem Raum ansehen
   </button>
-
 </model-viewer>
 
 <script>
-  // Funktionalität des AR-Buttons sicherstellen
   const modelViewer = document.querySelector('model-viewer');
   const arButton = document.getElementById('ar-button');
-  
+
+  if (!modelViewer.canActivateAR) {
+    arButton.style.display = 'none';
+  }
+
   arButton.addEventListener('click', () => {
     modelViewer.enterAR();
   });
