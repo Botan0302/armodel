@@ -8,19 +8,15 @@
     body {
       margin: 0;
       overflow: hidden;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background-color: #000;
     }
 
     model-viewer {
       width: 90vw;
       height: 80vh;
-      background-color: transparent;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      margin: auto;
+      display: block;
+      background-color: #000;
     }
 
     #ar-button {
@@ -65,17 +61,11 @@
   camera-controls
   ar
   ar-modes="scene-viewer webxr quick-look"
-  environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr"
+  environment-image="https://modelviewer.dev/shared-assets/environments/moon_1k.hdr"
+  exposure="1.0"
   shadow-intensity="1"
-  shadow-softness="0.9"
-  exposure="1.2"
-  tone-mapping="neutral"
-  auto-exposure
-  camera-orbit="15deg 75deg 2.5m"
-  field-of-view="30deg"
-  style="--poster-color: transparent;">
+  shadow-softness="0.8">
   
-  <!-- AR Button -->
   <button slot="ar-button" id="ar-button">
     In deinem Raum ansehen
   </button>
@@ -85,7 +75,7 @@
 <script>
   const modelViewer = document.querySelector('model-viewer');
   const arButton = document.getElementById('ar-button');
-
+  
   arButton.addEventListener('click', () => {
     modelViewer.enterAR();
   });
