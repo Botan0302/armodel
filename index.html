@@ -7,12 +7,12 @@
   <style>
     body {
       margin: 0;
-      overflow: hidden;
+      overflow: hidden; /* Verhindert das Scrollen der Seite */
     }
 
     model-viewer {
-      width: 90vw;
-      height: 80vh;
+      width: 90vw; /* Modell wird auf 90% der Bildschirmbreite verkleinert */
+      height: 80vh; /* Modell wird auf 80% der Bildschirmhöhe verkleinert */
       margin: auto;
       background-color: #e0e0e0;
     }
@@ -21,7 +21,7 @@
     #ar-button {
       position: absolute;
       left: 50%;
-      bottom: 40px;
+      bottom: 40px; /* Position etwas nach oben verschoben, damit der Button sichtbar ist */
       transform: translateX(-50%);
       background-color: white;
       border: 2px solid #4285f4;
@@ -49,6 +49,7 @@
     #ar-button:focus {
       outline: none;
     }
+
   </style>
 </head>
 <body>
@@ -59,21 +60,20 @@
   auto-rotate
   camera-controls
   ar
-  ar-modes="scene-viewer webxr quick-look"
-  environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr"
-  shadow-intensity="1"
-  exposure="1"
-  skybox-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_LDR.jpg"
->
+  ar-modes="scene-viewer webxr quick-look">
+  
+  <!-- AR Button, der in der Mitte erscheint -->
   <button slot="ar-button" id="ar-button">
     In deinem Raum ansehen
   </button>
+
 </model-viewer>
 
 <script>
+  // Funktionalität des AR-Buttons sicherstellen
   const modelViewer = document.querySelector('model-viewer');
   const arButton = document.getElementById('ar-button');
-
+  
   arButton.addEventListener('click', () => {
     modelViewer.enterAR();
   });
