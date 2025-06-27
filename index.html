@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Ausstellung MAN Stahlhaus</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer@3.4.1/dist/model-viewer.min.js"></script>
+  <script
+    type="module"
+    src="https://unpkg.com/@google/model-viewer@3.4.1/dist/model-viewer.min.js"
+  ></script>
   <style>
     body {
       margin: 0;
+      overflow-x: hidden; /* Nur horizontales Scrollen verhindern */
       font-family: Arial, sans-serif;
       background-color: #ffffff;
     }
@@ -37,9 +41,9 @@
 
     model-viewer {
       width: 90vw;
-      height: 80vh;
+      height: 70vh; /* Etwas kleinere Höhe, damit es gut passt */
       display: block;
-      margin: 0 auto;
+      margin: 0 auto 40px;
       background-color: #e0e0e0;
     }
 
@@ -55,7 +59,9 @@
       font-size: 18px;
       font-weight: bold;
       color: #4285f4;
-      background-image: url('https://modelviewer.dev/shared-assets/icons/ic_view_in_ar_new_googblue_48dp.png');
+      background-image: url(
+        "https://modelviewer.dev/shared-assets/icons/ic_view_in_ar_new_googblue_48dp.png"
+      );
       background-repeat: no-repeat;
       background-position: 12px center;
       background-size: 28px 28px;
@@ -77,29 +83,35 @@
   </style>
 </head>
 <body>
-
-  <!-- Kopfbereich mit Logo und Infotext -->
   <div id="header">
-    <img src="MANLogo.svg" alt="MAN Logo" id="logo">
+    <img src="MANLogo.svg" alt="MAN Logo" id="logo" />
     <h1>MAN Stahlhaus</h1>
-    <p>Erleben Sie unser innovatives Stahlhaus als 3D-Modell – drehen, zoomen und in AR betrachten!</p>
+    <p>
+      Erleben Sie unser innovatives Stahlhaus als 3D-Modell – drehen, zoomen
+      und in AR betrachten!
+    </p>
   </div>
 
-  <!-- 3D-Modellanzeige -->
   <model-viewer
     src="manhaus.glb"
     alt="3D-Modell von MAN Stahlhaus"
     auto-rotate
     camera-controls
     ar
-    ar-modes="scene-viewer webxr quick-look">
-
-    <!-- AR-Button -->
+    ar-modes="scene-viewer webxr quick-look"
+  >
     <button slot="ar-button" id="ar-button" aria-label="In deinem Raum ansehen">
       In deinem Raum ansehen
     </button>
-
   </model-viewer>
 
+  <script>
+    const modelViewer = document.querySelector("model-viewer");
+    const arButton = document.getElementById("ar-button");
+
+    arButton.addEventListener("click", () => {
+      modelViewer.enterAR();
+    });
+  </script>
 </body>
 </html>
