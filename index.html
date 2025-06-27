@@ -3,25 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>Ausstellung MAN Stahlhaus</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer@3.4.1/dist/model-viewer.min.js"></script>
   <style>
     body {
       margin: 0;
-      overflow: hidden; /* Verhindert das Scrollen der Seite */
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+    }
+
+    #header {
+      text-align: center;
+      padding: 20px 10px;
+      background-color: #f5f5f5;
+    }
+
+    #logo {
+      max-width: 160px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    #header h1 {
+      margin: 10px 0 5px;
+      font-size: 28px;
+      color: #333;
+    }
+
+    #header p {
+      margin: 0 0 15px;
+      font-size: 16px;
+      color: #555;
     }
 
     model-viewer {
-      width: 90vw; /* Modell wird auf 90% der Bildschirmbreite verkleinert */
-      height: 80vh; /* Modell wird auf 80% der Bildschirmhöhe verkleinert */
-      margin: auto;
+      width: 90vw;
+      height: 80vh;
+      display: block;
+      margin: 0 auto;
       background-color: #e0e0e0;
     }
 
-    /* Stil für den AR-Button */
     #ar-button {
       position: absolute;
       left: 50%;
-      bottom: 40px; /* Position etwas nach oben verschoben, damit der Button sichtbar ist */
+      bottom: 40px;
       transform: translateX(-50%);
       background-color: white;
       border: 2px solid #4285f4;
@@ -49,35 +74,32 @@
     #ar-button:focus {
       outline: none;
     }
-
   </style>
 </head>
 <body>
 
-<model-viewer
-  src="manhaus.glb"
-  alt="3D-Modell von manhaus"
-  auto-rotate
-  camera-controls
-  ar
-  ar-modes="scene-viewer webxr quick-look">
-  
-  <!-- AR Button, der in der Mitte erscheint -->
-  <button slot="ar-button" id="ar-button">
-    In deinem Raum ansehen
-  </button>
+  <!-- Kopfbereich mit Logo und Infotext -->
+  <div id="header">
+    <img src="MANLogo.svg" alt="MAN Logo" id="logo">
+    <h1>MAN Stahlhaus</h1>
+    <p>Erleben Sie unser innovatives Stahlhaus als 3D-Modell – drehen, zoomen und in AR betrachten!</p>
+  </div>
 
-</model-viewer>
+  <!-- 3D-Modellanzeige -->
+  <model-viewer
+    src="manhaus.glb"
+    alt="3D-Modell von MAN Stahlhaus"
+    auto-rotate
+    camera-controls
+    ar
+    ar-modes="scene-viewer webxr quick-look">
 
-<script>
-  // Funktionalität des AR-Buttons sicherstellen
-  const modelViewer = document.querySelector('model-viewer');
-  const arButton = document.getElementById('ar-button');
-  
-  arButton.addEventListener('click', () => {
-    modelViewer.enterAR();
-  });
-</script>
+    <!-- AR-Button -->
+    <button slot="ar-button" id="ar-button" aria-label="In deinem Raum ansehen">
+      In deinem Raum ansehen
+    </button>
+
+  </model-viewer>
 
 </body>
 </html>
